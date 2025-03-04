@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+</head>
+<body>
+    <main id="main">
+        <div class="game-container">
+            <h1>Hangman</h1>
+        </div>
+        <!--Word to guess-->
+        <div class="word-display">
+            <p>{{wordDisplay}}</p>
+        </div>
+
+        <!-- <div class="hint-section">
+            <button (click)="useHint()" [disabled]="hintsRemaining <= 0">Hint</button>
+            <p>{{ getHint() }}</p>
+          </div> -->
+
+          <!--Hints-->
+        <div class="hint-section">
+            <button (click)="useHint()" [disabled]="hintsRemaining <= 0">Hint</button>
+            @for (hint of currentHints; track hint) {
+                <p>{{hint}}</p>
+            }
+            <!-- <div *ngFor="let hint of currentHints">
+                <p>{{hint}}</p>
+            </div> -->
+        </div>
+
+        <!--Hints remaining, Number of wrong guesses-->
+        <div class="statistics">
+            <p>Miss: {{wrongGuesses}} / {{MAX_ATTEMPTS}}</p>
+            <p>Hint: {{hintsRemaining}} / {{MAX_HINTS}}</p>   
+        </div>
+        
+
+        <!--Letters-->
+        <div class="available-letters">
+            <!-- <button *ngFor="let letter of availableLetters" 
+            [disabled]="disabledLetters(letter)"
+            (click)="makeGuess(letter)"> 
+            {{letter}}
+            </button> -->
+
+            @for (letter of availableLetters; track letter) {
+                <button 
+                    [disabled]="disabledLetters(letter)"
+                    (click)="makeGuess(letter)"> 
+                    {{letter}}
+                </button>
+            }
+        </div>
+
+        <div class="try-again">
+            @if (gameMessage) {
+                <p id="game-message">{{gameMessage}}</p>
+                <button (click)="startGame()">Play again</button>
+            }
+            <!-- <p id="game-message" *ngIf="gameMessage">{{gameMessage}}</p> -->
+            <!-- <button *ngIf="gameMessage" (click)="startGame()">Play again</button> -->
+        </div>
+         <app-hangman [wrongGuesses]="wrongGuesses"></app-hangman> 
+
+
+
+    </main>
+</body>
+</html>
