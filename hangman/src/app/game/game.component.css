@@ -1,0 +1,106 @@
+ body {
+    background-image: url('/assets/cactus-big.png');
+    background-size: cover;       
+    background-position: center;    
+    background-attachment: fixed;   
+    margin: 0;                      
+    height: 100vh;   
+    font-family: Verdana, Geneva, Tahoma, sans-serif;  
+    font-size: 22px; 
+    color: white;            
+  }
+
+  @media (max-width: 768px) {
+    body {
+      background-image: url('/assets/cactus-small.png');
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  #wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+
+   #main-content {
+    padding-top: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+  }
+
+  .word-display {
+
+    font-size: larger;
+  }
+
+
+  .hint-text-container {
+    display: flex;
+    gap: 70px;
+    flex-wrap: wrap;
+    font-style: italic;
+    font-size: smaller;
+    height: 60px;
+  }
+
+  .statistics {
+    align-self: flex-end; 
+    text-align: right; 
+    width: 100%; 
+    padding-right: 20px; 
+    font-size: 17px;
+}
+
+
+.available-letters {
+    display: flex;
+    flex-wrap: wrap;  
+    justify-content: center;  
+    gap: 10px; 
+    max-width: 400px; 
+}
+
+.available-letters button {
+    background: none;  
+    border: none;  
+    font-size: 22px;  
+    cursor: pointer;  
+    color: white;  
+    padding: 5px 10px;  
+}
+
+.available-letters button:disabled {
+  color:grey;
+}
+
+
+
+.hint-section {
+    display: flex;
+    justify-content: center;
+}
+
+.hint-section button {
+    background: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.hint-section button:disabled {
+    color: grey;
+} 
+
+
+
+
+

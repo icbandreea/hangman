@@ -16,6 +16,7 @@ export class GameComponent implements OnInit {
   wordToGuess = '';
   hints: string[] = [];
   guessedLetters: string[] = [];
+  wrongLetters: string[] = [];
   wrongGuesses = 0;
   hintsRemaining = this.MAX_HINTS;
   currentHints: string[] = [];
@@ -36,6 +37,7 @@ export class GameComponent implements OnInit {
     this.wordToGuess = selectedWordObject.word.toUpperCase();
     this.hints = selectedWordObject.hints;
     this.guessedLetters = [];
+    this.wrongLetters = [];
     this.wrongGuesses = 0;
     this.hintsRemaining = this.MAX_HINTS;
     this.currentHints = [];
@@ -48,12 +50,13 @@ export class GameComponent implements OnInit {
   makeGuess(letter: string): void {
     letter = letter.toUpperCase();
 
-    if(this.guessedLetters.includes(letter)) return;
+    if(this.guessedLetters.includes(letter) || (this.wrongLetters.includes(letter)) ) return;
 
     if(this.wordToGuess.includes(letter)) {
       this.guessedLetters.push(letter);
     } else {
       this.wrongGuesses++;
+      this.wrongLetters.push(letter);
     }
 
     this.updateWordDisplay();
@@ -72,6 +75,7 @@ export class GameComponent implements OnInit {
   disabledLetters(letter: string): boolean {
     return (
       this.guessedLetters.includes(letter) ||
+      this.wrongLetters.includes(letter) ||
       this.wrongGuesses >= this.MAX_ATTEMPTS ||
       this.wordToGuess.split('').every(letter => letter === ' ' ? ' ' : this.guessedLetters.includes(letter))
     );
