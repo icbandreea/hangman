@@ -6,61 +6,59 @@
     <title>Hangman</title>
 </head>
 <body>
-    <div id="wrapper">
-    <main id="main-content">
-
+        <div class="top-section">
+            <!--Word to guess-->
+        <div class="word-display">
+            <p>{{wordDisplay}}</p>
+        </div>
         <div class="hint-text-container">
             @for (hint of currentHints; track hint) {
                 <p id="available-hint">{{hint}}</p>
             }
         </div>
+        </div>
 
+        <div class="middle-section">
+            <div class="column">
+                <!--Hints remaining, Number of wrong guesses-->
+                <div class="statistics">
+                    <p>Miss: {{wrongGuesses}} / {{MAX_ATTEMPTS}}</p>
+                    <p>Hint: {{hintsRemaining}} / {{MAX_HINTS}}</p>   
+                </div>  
+            </div>
+            <div class="column">
+                <app-hangman [wrongGuesses]="wrongGuesses"></app-hangman> 
+            </div>
+            <div class="column">
         <!--Hints-->
         <div class="hint-section">
-            <button (click)="useHint()" [disabled]="hintsRemaining <= 0">Hint</button>
+            
+            <button (click)="useHint()" [disabled]="hintsRemaining <= 0 || gameMessage">Hint</button>
         </div> 
-
-        <!--Word to guess-->
-        <div class="word-display">
-            <p>{{wordDisplay}}</p>
+            </div>
         </div>
 
-        <app-hangman [wrongGuesses]="wrongGuesses"></app-hangman> 
+        <div class="bottom-section">
+            <!--Letters-->
+            <div class="available-letters">
 
-                <!--Hints remaining, Number of wrong guesses-->
-        <div class="statistics">
-            <p>Miss: {{wrongGuesses}} / {{MAX_ATTEMPTS}}</p>
-            <p>Hint: {{hintsRemaining}} / {{MAX_HINTS}}</p>   
-        </div>   
+                @for (letter of availableLetters; track letter) {
+                    <button 
+                        [disabled]="disabledLetters(letter)"
+                        (click)="makeGuess(letter)"
+                        [class.wrong]="isWrongLetter(letter)"> 
+                        {{letter}}
+                    </button>
+                }
+            </div>
 
-
-
-        <!--Letters-->
-        <div class="available-letters">
-
-            @for (letter of availableLetters; track letter) {
-                <button 
-                    [disabled]="disabledLetters(letter)"
-                    (click)="makeGuess(letter)"> 
-                    {{letter}}
-                </button>
-            }
+            <div class="try-again">
+                @if (gameMessage) {
+                    <p>{{gameMessage}}</p>
+                    <button (click)="startGame()">Play again</button>
+                }
+            </div>
         </div>
-
-        <div class="try-again">
-            @if (gameMessage) {
-                <p id="game-message">{{gameMessage}}</p>
-                <button (click)="startGame()">Play again</button>
-            }
-        </div>
-
-          
-
-
-     
-
-    </main>
-</div>
 
 </body>
 </html>

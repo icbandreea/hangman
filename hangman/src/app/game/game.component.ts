@@ -20,7 +20,7 @@ export class GameComponent implements OnInit {
   wrongGuesses = 0;
   hintsRemaining = this.MAX_HINTS;
   currentHints: string[] = [];
-  availableLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  availableLetters = 'QWERTYUIOPASDFGHJKLZXCVBNM'.split('');
   gameMessage: string = '';
   wordDisplay: string = ''; 
 
@@ -81,6 +81,10 @@ export class GameComponent implements OnInit {
     );
   }
 
+  isWrongLetter(letter: string): boolean {
+    return this.wrongLetters.includes(letter);
+  }
+
     //Method to show the word 
     private updateWordDisplay(): void {
       this.wordDisplay = this.wordToGuess
@@ -98,6 +102,8 @@ export class GameComponent implements OnInit {
         this.gameMessage = '';
       }
     }
+
+
 
 
 }

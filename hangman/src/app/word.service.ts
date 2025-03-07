@@ -25,7 +25,26 @@ export class WordService {
     { word: 'Soccer', hints: ['Sport', 'Football'] },
     { word: 'Python', hints: ['Programming Language', 'Used for Web Development'] },
     { word: 'Guitar', hints: ['Instrument', 'Strummed'] },
-    { word: 'Volcano', hints: ['Mountain', 'Erupts Lava'] }
+    { word: 'Volcano', hints: ['Mountain', 'Erupts Lava'] },
+    { word: 'Amazon', hints: ['River', 'Online Shopping'] },
+    { word: 'Mercury', hints: ['Planet', 'Closest to the Sun'] },
+    { word: 'Eiffel', hints: ['Tower', 'Paris Landmark'] },
+    { word: 'Cheetah', hints: ['Animal', 'Fastest Runner'] },
+    { word: 'Venus', hints: ['Planet', 'Hottest One'] },
+    { word: 'Pizza', hints: ['Food', 'Cheese & Tomato'] },
+    { word: 'Hawk', hints: ['Bird', 'Sharp Eyes'] },
+    { word: 'Dracula', hints: ['Vampire', 'Transylvania'] },
+    { word: 'Rainbow', hints: ['Colors', 'After Rain'] },
+    { word: 'Diamond', hints: ['Jewel', 'Hardest Material'] },
+    { word: 'Neptune', hints: ['Planet', 'Farthest from Sun'] },
+    { word: 'Ballet', hints: ['Dance', 'On Toes'] },
+    { word: 'Chess', hints: ['Game', 'King & Queen'] },
+    { word: 'Comet', hints: ['Space', 'Has a Tail'] },
+    { word: 'Pyramid', hints: ['Egypt', 'Triangle Shape'] },
+    { word: 'Sphinx', hints: ['Egypt', 'Half Lion'] },
+    { word: 'Octopus', hints: ['Sea Creature', 'Eight Arms'] },
+    { word: 'Clock', hints: ['Time', 'Has Hands'] },
+    { word: 'Wolf', hints: ['Animal', 'Howls at Moon'] }
   ];
 
   constructor() { }
