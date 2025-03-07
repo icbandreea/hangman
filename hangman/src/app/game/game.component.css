@@ -135,6 +135,7 @@ gap:40px;
 
 
 .available-letters button {
+  position: relative;
   background: none;  
   border: none;  
   font-size: 22px;  
@@ -143,6 +144,19 @@ gap:40px;
   padding: 5px 10px;  
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 5px;
+  width: 40px;
+  height: 40px;
+}
+
+.available-letters button.wrong::after {
+  content: 'X';
+  color: red;
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  pointer-events: none;
 }
 
 .available-letters button:disabled {

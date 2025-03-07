@@ -57,6 +57,11 @@
                     <p>{{gameMessage}}</p>
                     <button (click)="startGame()">Play again</button>
                 }
+
+                @else {
+                    <button (click)="startGame()">Retry</button>
+                }
+
             </div>
         </div>
 
