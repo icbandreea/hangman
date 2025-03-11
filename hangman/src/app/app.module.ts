@@ -13,9 +13,7 @@ import { GameComponent, HangmanComponent } from './components';
     GameComponent,
     HangmanComponent,
   ],
-  providers: [
-    provideHttpClient()
-  ],
+  providers: [],
   bootstrap: [] 
 })
 export class AppModule { }

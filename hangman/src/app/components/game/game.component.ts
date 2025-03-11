@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HangmanComponent } from '../hangman/hangman.component';
 import { Subject, switchMap, takeUntil, tap } from 'rxjs';
@@ -32,15 +32,14 @@ export class GameComponent implements OnInit, OnDestroy {
   availableLetters = KEYS.split('');
   gameMessage: string = '';
   wordDisplay: string = '';
+  isGameOver: boolean = false;
 
   constructor(private wordService: WordService) {
-    debugger
     this.startGameSubject
       .pipe(
         switchMap(() =>
           this.wordService.getRandomWord().pipe(
             tap((guessableWord: GuessableWord) => {
-              debugger
              this.initializeGame(guessableWord);
             }),
             takeUntil(this.destroy$)
@@ -80,6 +79,27 @@ export class GameComponent implements OnInit, OnDestroy {
     this.updateGameMessage();
   }
 
+  private isKeyboardLetterValid(letter: string): boolean {
+    return (
+     KEYS.includes(letter) && 
+     !this.guessedLetters.includes(letter) && 
+     !this.wrongLetters.includes(letter)
+   );
+ }
+ 
+   @HostListener('window:keydown', ['$event'])
+   onKeyDown(event: KeyboardEvent) {
+    if(this.isGameOver) {
+      return;
+    }
+     const letter = event.key.toUpperCase();
+ 
+     if(this.isKeyboardLetterValid(letter)) {
+       this.makeGuess(letter);
+     }
+      
+   }
+ 
   useHint(): void {
     if (this.hintsRemaining > 0 && this.currentHints.length < this.MAX_HINTS) {
       this.currentHints.push(this.hints[this.currentHints.length]);
@@ -125,6 +145,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.hintsRemaining = this.MAX_HINTS;
     this.currentHints = [];
     this.gameMessage = '';
+    this.isGameOver = false;
   }
   
   private updateWordDisplay(): void {
@@ -142,9 +163,11 @@ export class GameComponent implements OnInit, OnDestroy {
 
   private updateGameMessage(): void {
     if (this.isWordGuessed()) {
+      this.isGameOver= true;
       this.gameMessage = 'Congratulations! You guessed the word!';
     } else if (this.wrongGuesses >= this.MAX_ATTEMPTS) {
       this.gameMessage = `You lost! The word was: ${this.wordToGuess}`;
+      this.isGameOver= true;
     } else {
       this.gameMessage = '';
     }

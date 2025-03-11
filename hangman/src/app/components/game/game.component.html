@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="top-section">
+        
+        <div class="word-display">
+            <p>{{wordDisplay}}</p>
+        </div>
+        <div class="hint-text-container">
+            @for (hint of currentHints; track hint) {
+            <p id="available-hint">{{hint}}</p>
+            }
+        </div>
+    </div>
+
+    <div class="middle-section">
+        <div class="column">
+
+            <div class="statistics">
+                <p>Miss: {{wrongGuesses}} / {{MAX_ATTEMPTS}}</p>
+                <p>Hint: {{hintsRemaining}} / {{MAX_HINTS}}</p>
+            </div>
+        </div>
+        <div class="column">
+            <app-hangman [wrongGuesses]="wrongGuesses"></app-hangman>
+        </div>
+        <div class="column">
+ 
+            <div class="hint-section">
+
+                <button (click)="useHint()" [disabled]="hintsRemaining <= 0 || gameMessage">Hint</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-section">
+
+        <div class="available-letters">
+
+            @for (letter of availableLetters; track letter) {
+            <button [disabled]="isLetterDisabled(letter)" (click)="makeGuess(letter)"
+                [class.wrong]="isWrongLetter(letter)">
+                {{letter}}
+            </button>
+            }
+        </div>
+
+        <div class="try-again">
+            @if (gameMessage) {
+            <p>{{gameMessage}}</p>
+            <button (click)="startGame()">Play again</button>
+            }
+
+            @else {
+            <button (click)="startGame()">Retry</button>
+            }
+
+        </div>
+    </div>
+</div>
