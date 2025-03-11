@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { GameComponent } from './game/game.component';
-import { HangmanComponent } from './hangman/hangman.component';
-import { KeyboardComponent } from './keyboard/keyboard.component';
-import { StatisticsComponent } from './statistics/statistics.component';
+import { provideHttpClient } from '@angular/common/http';
+import { GameComponent, HangmanComponent } from './components';
 
 
 @NgModule({
@@ -14,10 +12,10 @@ import { StatisticsComponent } from './statistics/statistics.component';
     AppComponent,
     GameComponent,
     HangmanComponent,
-    KeyboardComponent,
-    StatisticsComponent
   ],
-  providers: [],
+  providers: [
+    provideHttpClient()
+  ],
   bootstrap: [] 
 })
 export class AppModule { }
