@@ -3,7 +3,7 @@ import { GuessableWord } from '../models';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class WordService {
   constructor(private readonly httpClient: HttpClient) { }
   

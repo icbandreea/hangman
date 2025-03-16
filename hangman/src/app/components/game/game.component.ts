@@ -11,7 +11,6 @@ const KEYS = 'QWERTYUIOPASDFGHJKLZXCVBNM';
   selector: 'app-game',
   imports: [CommonModule, HangmanComponent],
   standalone: true,
-  providers: [WordService],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css',
 })
@@ -22,7 +21,7 @@ export class GameComponent implements OnInit, OnDestroy {
   readonly MAX_ATTEMPTS = 6;
   readonly MAX_HINTS = 2;
 
-  wordToGuess = '';
+  wordToGuess: string = '';
   hints: string[] = [];
   guessedLetters: string[] = [];
   wrongLetters: string[] = [];
@@ -173,7 +172,7 @@ export class GameComponent implements OnInit, OnDestroy {
     }
   }
 
-  private isWordGuessed(): boolean {
+   isWordGuessed(): boolean {
     return this.wordToGuess
         .split('')
         .every((letter) =>

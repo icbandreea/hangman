@@ -1,6 +1,8 @@
 <div class="container">
+    <div class="empty-section">
+    </div>
+
     <div class="top-section">
-        
         <div class="word-display">
             <p>{{wordDisplay}}</p>
         </div>
@@ -9,18 +11,21 @@
             <p id="available-hint">{{hint}}</p>
             }
         </div>
-    </div>
+    </div> 
 
     <div class="middle-section">
         <div class="column">
 
             <div class="statistics">
-                <p>Miss: {{wrongGuesses}} / {{MAX_ATTEMPTS}}</p>
-                <p>Hint: {{hintsRemaining}} / {{MAX_HINTS}}</p>
+                <p>Miss: <br> {{wrongGuesses}} / {{MAX_ATTEMPTS}}</p>
+                <p>Hint: <br> {{hintsRemaining}} / {{MAX_HINTS}}</p>
             </div>
         </div>
         <div class="column">
-            <app-hangman [wrongGuesses]="wrongGuesses"></app-hangman>
+            <app-hangman 
+            [wrongGuesses]="wrongGuesses"
+            [isWordGuessed]="isWordGuessed()"
+            ></app-hangman>
         </div>
         <div class="column">
  

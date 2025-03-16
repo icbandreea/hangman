@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class HangmanComponent {
   @Input() wrongGuesses: number = 0;
+  @Input() isWordGuessed: boolean = false;
 
   constructor() {}
 }

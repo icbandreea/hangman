@@ -4,12 +4,14 @@
   box-sizing: border-box;
 }
 
-.html, .body {
+html, body {
   overflow-x: auto;
+  height: 100%;
+  margin:0;
+  padding:0;
 }
 
 .container {
-  /* background-color: gray; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,33 +27,9 @@
   margin: 0;
 }
 
-@media (max-width: 768px) {
-  .container {
-    background-image: url('/assets/cactus-small.png');
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 100vh;
-    text-align: center;
-    background-size: cover;       
-    background-position: center;    
-    background-attachment: fixed;   
-    font-family: Verdana, Geneva, Tahoma, sans-serif;  
-    font-size: 20px; 
-    flex-wrap: wrap;
-  }
-
-  .statistics {
-    font-size: smaller;
-  }
-
-}
-
 .top-section {
 width: 100%;
 height: 20%;
- /* background-color: #ff5733;  */
 display: flex;
 flex-direction: column-reverse;
 align-items: center;
@@ -67,7 +45,6 @@ padding-bottom: 20px;
   display: flex;
   justify-content: center;
   width: 100%;
-  /* background-color:green; */
   font-size: 24px;;
 }
 
@@ -86,7 +63,6 @@ padding-bottom: 20px;
 
 
 .middle-section {
-  /* background-color: green; */
 display: flex;
 width: 50%;
 height: 35%;
@@ -94,7 +70,6 @@ gap: 5px;
 }
 
 .column {
-/* background-color: #3385ff; */
 min-height: 100%;
 display: flex;
 align-items: center;
@@ -113,7 +88,6 @@ font-size: 20px;
 
 .column:nth-child(2) {
   flex:2;
-  /* padding-left: 20px; */
   align-items: flex-end;
 }
 
@@ -129,14 +103,12 @@ font-size: 20px;
 .bottom-section {
 width: 100%;
 flex-grow: 1; 
-/* background-color: #ff33a1; */
 display: flex;
 align-items: center;
 justify-content: center;
 font-size: 20px;
 color: white;
 flex-direction: column;
-/* gap:40px; */
 position: relative;
 width: 100%;
 max-width: 100%;
@@ -149,8 +121,6 @@ padding: 0 1rem;
 .try-again {
   display: flex;
   justify-content: center;
-  /* width: 100%; */
-  /* background-color:green; */
   font-size: 24px;
   height:100%;
 
@@ -173,7 +143,6 @@ padding: 0 1rem;
   font-size: 22px;  
   cursor: pointer;  
   color: white;  
-  /* padding: 5px 10px;   */
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 5px;
   width: 40px;
@@ -193,6 +162,7 @@ padding: 0 1rem;
 
 .available-letters button:disabled {
   color:grey;
+  cursor: auto;
 }
 
 
@@ -233,8 +203,109 @@ padding: 0 1rem;
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.5);
   font-size: 18px;
+  cursor: pointer;
 }
 
 .hint-section button:disabled {
   color: grey;
+  cursor:auto;
 } 
+
+@media (min-width: 1300px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+
+  .empty-section {
+    height: 2%;
+  }
+
+  .top-section {
+    height: 20%;
+  }
+
+  .middle-section {
+    height: 35%;
+  }
+
+  .bottom-section {
+    padding-top: 3%;
+    height: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  .container{
+  background-image: url('/assets/cactus-small.png');
+  }
+    
+  .word-display, 
+  .hint-text-container {
+    font-size: 17px;
+  }
+  
+  .word-display {
+    padding-top: 10px;
+    
+  }
+  
+  .hint-text-container {
+    font-size: 17px;
+  }
+    
+
+  .middle-section {
+  width: 100%;
+  height: 35%;
+  gap: 5px;
+  }
+  
+  .statistics {
+    font-size: 15px;
+    padding-bottom: 2%;
+  }
+  
+  .column:last-child {
+    justify-content: center;
+  }
+
+  .available-letters {
+    width: 360px;
+    height: 200px;
+    height: 45%;
+  }
+
+  .available-letters button {
+    font-size: 17px;  
+    width: 35px;
+    height: 35px;
+  }
+
+  .available-letters button.wrong::after {
+    font-size: 23px;
+  }
+
+  .try-again {
+    height: 40%;
+  }
+  
+
+  .try-again p { 
+    font-size: 17px; 
+  }
+
+  .try-again button {
+    font-size: 17px;  
+    padding: 5px 10px;  
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+  }
+
+  .hint-section button {
+    padding: 5px 10px;
+    font-size: 17px;
+  }
+}
